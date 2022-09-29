@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+            .cls-1,.cls-2{fill:none;stroke:#dcdfe6;stroke-linejoin:round;stroke-width:2px;}.cls-2{stroke-linecap:round;}
+        </style>
+    </defs>
+    <rect class="cls-1" height="46" rx="5" ry="5" transform="translate(48) rotate(90)" width="46" x="1" y="1"/>
+    <polyline class="cls-2" points="32 12 15 24 32 36"/>
+</svg>
