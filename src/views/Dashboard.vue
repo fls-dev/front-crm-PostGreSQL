@@ -23,12 +23,12 @@ export default {
   },
   data: function () {
     return {
-      // user: this.$store.getters.USER,
+      user: this.$store.getters.USER,
       // userName: this.$store.getters.USER_NAME,
     }
   },
   mounted() {
-    // console.log(this.$store.getters.USER)
+    console.log(this.$store.getters.USER)
   }
 }
 </script>

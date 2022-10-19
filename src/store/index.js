@@ -27,14 +27,14 @@ export const store = new Vuex.Store({
             }
         },
         USER_NAME: state => {
-            if(state.hasOwnProperty('state.user.details.firstName')){
+            if(state.hasOwnProperty('user.details.firstName')){
                 return state.user.details.firstName
             }else {
                 return "Not authorized"
             }
         },
         USER_PHOTO: state => {
-            if(state.hasOwnProperty('state.user.details.avatar')){
+            if(state.hasOwnProperty('user.details.avatar')){
                 return serverUrl+state.user.details.avatar
             }else {
                 return "/img/avatar.jpg"

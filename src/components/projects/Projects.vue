@@ -1,11 +1,12 @@
 <template>
   <div class="container">
     <div class="projects">
-      <p v-if="loading">LOADING</p>
+      <button @click="refresh">REFRESH</button>
+      <p v-if="loading">LOADING </p>
       <div v-else v-for="item of getProjects" class="item-project">
         <img @click="deleteProject(item._id)" class="delete-project" src="/img/icons/delete.svg">
         <router-link :to="{ name: 'EditProject', params: { projectId: item._id }}">
-        <p class="name-project">{{ item.name }}</p>
+        <p class="name-project">{{ item.title }}</p>
         <p class="desc-project">{{ item.description.slice(0,110) }}</p>
           <div class="deadline">
             <div class="d-start">{{item.deadline.start}}</div>
@@ -31,7 +32,7 @@
 <script>
 
 import axios from "axios";
-import {keyCookie, serverUrl} from "@/vue.config";
+import {keyCookie, serverUrl, sessionId} from "@/vue.config";
 
 export default {
   name: "Projects",
@@ -56,15 +57,15 @@ export default {
         const get_projects = await axios.get(serverUrl + "projects/user/" + id)
         console.log(get_projects)
         if (get_projects.status === 200) {
-
-          const projects = get_projects.data.projects
+          const projects = get_projects.data;
+          console.log(projects)
           for(let p=0;p<projects.length;p++){
-            const allCount = projects[p].allTasks.length
+            const allCount = projects[p].tasks.length
             if(allCount === 0){
               projects[p].completed = "1%";
               continue;
             }else {
-              let allTasks = projects[p].allTasks
+              let allTasks = projects[p].tasks
               let countC = 0
               for(let t=0;t<allTasks.length;t++){
                 if(allTasks[t].status === 'completed'){
@@ -108,6 +109,17 @@ export default {
           .catch(function () {
             console.log('no')
           });
+    },
+    refresh(){
+      axios.post(serverUrl + 'auth/refresh', {},{
+        withCredentials:true,
+        headers: {
+          'Accept': '*/*',
+          "Bearer" : $cookies.get(sessionId)
+        },
+      }).then((res) => {
+        console.log(res)
+      })
     }
   },
   mounted() {

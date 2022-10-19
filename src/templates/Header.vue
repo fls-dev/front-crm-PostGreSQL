@@ -35,7 +35,7 @@ export default {
   computed: {
     getSidebar() { return this.$store.getters.STATUS_SIDEBAR},
     getAvatar() { return this.$store.getters.USER_PHOTO},
-    getName() { return this.$store.getters.USER_NAME},
+    getName() { return this.$store.getters.USER.details.firstName},
   },
   methods: {
     burgerAnimate(){
@@ -52,7 +52,7 @@ export default {
   },
 
   mounted() {
-    // console.log(this.getName)
+    console.log(this.getName)
   }
 }
 </script>

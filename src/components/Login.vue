@@ -15,7 +15,7 @@
 
 <script>
 import axios from "axios";
-import {keyCookie, serverUrl} from "@/vue.config";
+import {keyCookie, serverUrl, sessionId} from "@/vue.config";
 import VueRouter from 'vue-router'
 import router from "@/router";
 const { isNavigationFailure, NavigationFailureType } = VueRouter
@@ -45,6 +45,7 @@ export default {
         if (res.request.status === 200) {
           // console.log(res.data.passport.user._doc)
           this.$cookies.set(keyCookie, res.data.user.id)
+          this.$cookies.set(sessionId, res.data.accessToken)
           this.$store.dispatch('addInfoUser', res.data.user)
           if(res.data.user.role === "ADMIN"){
             this.$router.push('/dashboard/projects')
